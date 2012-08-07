@@ -1,0 +1,7 @@
+node_modules/
+*.swp
+*.bak
+*.pyc
+-p
+
+api.sublime-*
