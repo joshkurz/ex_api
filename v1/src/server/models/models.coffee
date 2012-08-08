@@ -1,0 +1,487 @@
+mongoose = require('mongoose')
+lastMod = require("./lastmod")
+Schema = mongoose.Schema
+ObjectId = Schema.ObjectId
+
+schemas = [] # used to capture schema details for docs
+
+# if 1 is for convenience to collapse each block in Sublime
+if 1 # Event  
+  schemaName = 'Event'
+  schema = Event = new Schema
+    type: {type: String, enum: ['l', 'e', 't', 'a'], \
+      doc:"l=log, e=event, t=todo, a=anniverary"}
+    tags: {type: [String], \
+      doc: "DS=Discussion, CALL, wedding, hired, etc"}
+    y: Number # year ie, 2012
+    ym: Number # year+month, ie, 201207 or -60710
+    ymd: Number # year+month+day, ie, 20120730
+    is: {type: String, enum: ['a', 'b', 'c']} # b=before, a=after, c=circa/close
+    date: Date
+    note: String
+  schema.plugin lastMod
+  exports[schemaName] = mongoose.model(schemaName, schema) 
+  schemas.push {name:schemaName, schema}
+if 1 # UserRelatedTitle
+  # If Current User is 'sonOf', then looksUpTo = True or child/lookupto related User
+  # in that case set UserRelated.parent_id = related User and child_id = current User
+  schemaName = 'UserRelatedTitle'
+  schema = UserRelatedTitle = new Schema
+    looksUpTo: Boolean 
+    type:
+      type: String, enum: ['f','fx','o'] # f=family, fx=extended family, o=organizational
+    title: String # Father of, Manager of, Overseer of, 
+    titleShort: String # fatherOf, managerOf, overseerOf, 
+    titleRev: String # Son of, Reports to, Employed by, Works for
+    titleRevShort: String # sonOf, reportsTo, employedBy, worksFor
+  schema.plugin lastMod
+  exports[schemaName] = mongoose.model(schemaName, schema) 
+  schemas.push {name:schemaName, schema}
+if 1 # UserRelated
+  schemaName = 'UserRelated'
+  schema = UserRelated = new Schema
+    parent_id: ObjectId
+    parentName: String # if no User Doc, just punch in a name
+    child_id: ObjectId
+    childName: String # if no User Doc, just punch in a name
+    relatedType: [UserRelatedTitle]
+      # UI NOTE: Idea is to pick from list of UserRelatedTitle titles to determine how to connect Users
+    beginOn: [Event]
+    endOn: [Event]
+    status: String 
+    sort: Number # sort order as applies to sibling Associations
+    note: String 
+  schema.plugin lastMod
+  exports[schemaName] = mongoose.model(schemaName, schema) 
+  schemas.push {name:schemaName, schema}
+
+if 1 # Note
+  schemaName = 'Note'
+  schema = Note = new Schema
+    tags: [String] # DS=Discussion, CALL, wedding, hired, etc
+    note: String
+  schema.plugin lastMod
+  exports[schemaName] = mongoose.model(schemaName, schema)
+  schemas.push {name:schemaName, schema}
+
+if 1 # Lang-Language
+  schemaName = 'Lang'
+  schema = Lang = new Schema
+    name: String
+    iso: String # internet standard ID code
+    wt: String # code used by Watchtower
+    local: String # local version of name
+  schema.plugin lastMod
+  exports[schemaName] = mongoose.model(schemaName, schema)
+  schemas.push {name:schemaName, schema}
+if 1 # UserLang
+  schemaName = 'UserLang'
+  schema = UserLang = new Schema
+    language_id: [Lang]
+    sort: Number # empty = primary, otherwise sort order
+    read: Boolean
+    write: Boolean
+    speak: Boolean
+    note: String
+  schema.plugin lastMod
+  exports[schemaName] = mongoose.model(schemaName, schema)
+  schemas.push {name:schemaName, schema}
+if 1 # Email
+  schemaName = 'Email'
+  schema = Email = new Schema
+    sort: Number # empty = primary, otherwise sort order
+    email: String
+    note: String
+  schema.plugin lastMod
+  exports[schemaName] = mongoose.model(schemaName, schema)
+  schemas.push {name:schemaName, schema}
+if 1 # Net-SocialNetwork
+  schemaName = 'Net'
+  schema = Net = new Schema
+    sort: Number # empty = primary, otherwise sort order
+    # accomodate ability to add other enum strings to Schema
+    type: {type:String, enum: 'skype', 'google', 'facebook', 'other'}
+    userName: String
+    userId: String
+    note: String
+  schema.plugin lastMod
+  exports[schemaName] = mongoose.model(schemaName, schema)
+  schemas.push {name:schemaName, schema}
+if 1 # Phone
+  schemaName = 'Phone'
+  schema = Phone = new Schema
+    sort: Number # empty = primary, otherwise sort order
+    type: 
+      # l=landline, m=mobile, v=voice over internet, p=pager, f=fax
+      type: String, enum: ['l', 'm', 'v', 'p', 'f'] 
+    countryCode: String
+    areaCode: String 
+    number: {type: String, required: true}
+    ext: {type: String} # extension, add validation for only numbers
+    note: String
+  schema.virtual("phoneFull").get ->
+    ret = ''
+    ret += ('+' + @countryCode + ' ') if @countryCode
+    ret += ('(' + @areaCode + ') ') if @areaCode
+    ret += @number
+    ret += ('x' + @ext) if @ext
+    return ret
+  schema.plugin lastMod
+  exports[schemaName] = mongoose.model(schemaName, schema)
+  schemas.push {name:schemaName, schema}
+if 1 # User
+  schemaName = 'User'
+  schema = User = new Schema
+    # Primary
+    isUser: Boolean # link to user if applicable
+    statusTags: [String] # [DO_NOT_CALL, NH, ETC]
+    affiliationTags: [String] # [Professional, etc]
+    typeId: String # Empty = person, org=organization, cong=congregation, div=division, br=branch, grp=group
+    code: String # assigned as applicable
+    industryId: String # retail, manufacturing, education, government, theocratic
+    nameShort: String # company abbreviation or person initials
+    nickName: String # company or personal nickname
+    # Status
+    tags: [String] # [park, dining, coffee, parking, shopping]
+    status: String # [DO_NOT_CALL, NH, ETC]
+    notes: [Note] # Note Object
+    log: [Event]
+    adminNote: String    
+    # Person
+    title: String # Mr, Mrs, Ms, etc
+    firstName: String
+    middleName: String
+    lastName: String
+    maidenName: String
+    suffix: String
+    gender: String
+    anniversaries: [Event]
+    languages: [UserLang]
+    familyTags: [String] # married, single, minor, headofhouse, etc
+    professionTags: [String] # doctor, teacher, etc
+    skillTags: [String] # painter, etc
+    hobbyTags: [String] # music, etc
+    pets: [String] # dog:spot, etc
+    pics: [String] # profile pictures
+    # Entity
+    companyName: String
+    division: String
+    department: String
+  # Virtual Attributes
+  ###
+  lastEventOn: latest log date
+  lastEventBy: associated userName 
+  nameFull: 
+    # If person:
+      personFull: lastName + maidenName + suffix, title + firstName + middleName
+    # If company:
+      companyFull: companyName + department
+    # If company & person:          
+      companyFull + personFull
+    placeFull: # primary address (place):
+    commMethods:
+      phonesFull
+      emailsFull
+      netsFull
+    vCard:
+      nameFull
+      placeFull
+      commMethods
+  ###
+  schema.plugin lastMod
+  exports[schemaName] = mongoose.model(schemaName, schema) 
+  schemas.push {name:schemaName, schema}
+if 1 # Place
+  schemaName = 'Place'
+  if 1
+    placeTypes = ['c-clinic','c-dinning','c-factory','c-hospital','c-mall','c-police','c-school','c-shopping','g-lake','g-river','l-monument','l-statue','o-world','o-zone','o-language','o-district','o-circuit','o-cong','o-group','o-subGroup','o-territory','o-subTerritory','o-block','p-hemisphere','p-continent','p-country','p-stateProvince','p-county','p-locality','p-subLocality','p-neighborhood','p-premise','p-subPremise','p-floor']
+    ###
+    p-locality #city
+    p-subLocality # like ? in CR
+    p-neighborhood # like ?
+    p-premise # Collection of buildings
+    p-subPremise # usually a singular building within a collection
+    ###
+  schema = Place = new Schema
+    # Primary
+    ###
+    need a short human friendly unique ID that user can easily use to find by: p<id>
+    c=commercial, g=geographic, l=landmark, m=mixed, o=organizational, p=political, r=residence
+    ###
+    id: String 
+    class: {type:String, enum: ['c','e','g','m','o','p','r']}
+    # depending on the place class, user pick from corresponding type
+    type: {type: String, enum: placeTypes}
+    multipleUnits: Boolean # inicates multiple units, ie, condominiums, tenants, etc
+    multipleLevels: Boolean # inicates multiple floors/levels
+    name: String # if applicable
+    nameShort: String # abbreviation if applicable
+    nickname: String # indicates a commonly-used alternative name for the 
+    code: String # assigned to place as applicable
+    sort: Number # empty = primary, otherwise sort order
+    # Status
+    status: String # [DO_NOT_CALL, NH, ETC]
+    log: [Event]
+    # Location
+    addrStrName: String # street/route name part of address
+    addrStrAddr: String # number part of an address
+    addrFloor: String  # the floor of a building address.
+    addrSuiteApt: String # number/letter that represents a single unit/apartment in multiunit structure
+    address: String # If any of the addr parts are provided, address will format address from them
+    ###
+    In the UI, user picks San Diego city, find or add, and use this Place
+    Theoretically, user picks from existing paths of 'places' or
+    fills in typical: Country, State, County, City, etc.
+    from these, Place docs are created and linked together
+    ultimately THIS place can only link to ONE 'location' Place
+    To build location path for example:
+    This residence Place belongs to a neighborhood which belongs to a city which belongs to a state, etc
+    ###
+    location: [Place] 
+    # Geo
+    boundary: {} # array of points/locs # boundary of place if an area is involved
+    boundaryConfirmed: Boolean # empty = unconfirmed
+    box: {} # top-left lng-lat, bottom-right lng-lat
+    loc: [Number, Number] # LNG,LAT, if this involves a boundary, loc becomes center pt
+    locConfirmed: Boolean # empty = unconfirmed
+    # Associations
+    ###
+    This place may belong to organizational places/territories
+    ie, this Place.territory may belong to a Place.SalesDistrict
+    PlaceAssoc.California -> includes -> Place.San Diego
+    ###
+    belongsTo: [Place] 
+    intersection: String # major intersection, usually of two major roads.
+    adminNote: String
+    # Description
+    accessTags: [String] # [restricted, intercom, guard]
+    color1: {type: String, enum: ['white', 'black', 'etc']} # prominent color
+    color2: {type: String, enum: ['white', 'black', 'etc']} # secondary color
+    description: String # other identifying details
+    tags: [String] # [park, dining, coffee, parking, shopping]
+    toNext: String # option for directions to the next place
+    # Details
+    notes: [Note]
+    phones: [Phone] # this place could be a general business
+    emails: [Email]
+    urls: [URL]
+    contacts: [User]
+
+
+  # Cached Virtual Attributes
+  ###
+  lastEventOn: latest log date
+  lastEventBy: associated userName 
+  path: of ancestors, ie, ['Costa Rica', 'Heredia', 'Belen']
+  pathShort: version of ancestors, ie, cr/her?/belen
+  name:
+  nameShort:      
+  addressFull: Automatically filled in with address parts if provided.
+  ###    
+  schema.plugin lastMod
+  exports[schemaName] = mongoose.model(schemaName, schema)
+  schemas.push {name:schemaName, schema}
+
+
+
+
+Ranks
+  GSNI - OrgName
+    Troop
+      Club
+        Chapter
+          Users
+    AnotherChild
+      adfasfd
+        adsfasfd
+
+
+Use Cases
+  Create Parent Message
+    of a type, ie, activity, event, memo, discussion, achievement, project
+    Attach Children Messages
+      of any type, except project
+      Embedded in array of items within parent Message
+        Attach Activity Doc
+          Attach Discussion, event, file, etc
+
+  Create Parent Project
+    Admins create Events
+      Event
+        Attach any other than project
+    Admins create Activities
+      Activity
+        Docs
+          Doc
+          Doc
+        Tasks
+          Task
+            Attributes
+            Users can see status
+            Admin can check off as complete, etc
+
+if 1 # Tag
+  schemaName = 'Tag'
+  schema = Rank = new Schema
+
+if 1 # Doc -> previous referred to as Message
+  schemaName = 'Doc'
+  schema = Doc = new Schema
+
+  parent_id: ObjectId # belongs to another Doc
+  typeId: String # ac=achievement, a=activity, e=event, d=discussion, f=file, i=image, p=project, m=message, t=task
+
+  title:
+    type: String
+    required: true
+  titleShort: String # abbreviation or initials
+  code: String # assigned as applicable
+
+if 1 # Org
+  ###
+  An Organazition can belong to a parent org
+  ###
+  schemaName = 'Org'
+  schema = Org = new Schema
+
+  parent_id: ObjectId # belongs to another Org
+  typeId: String # gs=girlsScoutsIntl, gscntry=girlsScoutsCountry, gsregion=girlsScoutRegion, gscounty=county
+  name:
+    type: String
+    required: true
+  nameShort: String # abbreviation or initials
+  
+  code: String # assigned as applicable
+  industryId: String # retail, manufacturing, education, government
+  statusTags: [String]
+
+  notes: [Note] # Note Object
+  log: [Event]
+  adminNote: String    
+
+  users: [User]
+
+  bio: String # ???
+  tags: [Tag]
+
+
+if 1 # User
+  schemaName = 'User'
+  schema = User = new Schema
+
+  code: String # assigned as applicable
+  industryId: String # retail, manufacturing, education, government
+  statusTags: [String]
+
+  notes: [Note] # Note Object
+  log: [Event]
+  adminNote: String    
+
+  rank: String # ???
+  bio: String # ???
+  points: Number # ???
+  gender: String
+  tags: [String]
+  languages: [UserLang]
+
+  org_id: ObjectId # foreign key to org
+  firstName: # current fieldname
+    type: String
+    required: true
+  middleName: # new
+    type: String
+    required: true
+  lastName: # current lastname
+    type: String
+    required: true
+  maidenName: # current lastname
+    type: String
+    required: true
+  userName: # use field
+    type: String
+    required: true
+  nickName: String # 
+  email:
+    type: String
+    required: true
+  salt: # new field
+    type: String
+    required: true
+    default: uuid.v1
+  passwdHash: # current field name: password
+    type: String
+    required: true
+  finishedActivities: [Activity]
+  favorites: [Favorite]
+  currentActivities: [Activity]
+  image: String # profile image
+
+  schema.plugin lastMod
+  exports[schemaName] = mongoose.model(schemaName, schema)
+
+  hash = (passwd, salt) ->
+    crypto.createHmac("sha256", salt).update(passwd).digest "hex"
+
+  schema.methods.setPassword = (passwordString) ->
+    @passwdHash = hash(passwordString, @salt)
+  schema.methods.nameFull = ->
+    @firstName + ' ' + @lastName
+  schema.methods.phonePrimary = ->
+    @phones[0].phoneFull()
+
+  # Virtual Attributes
+  ###
+  lastEventOn: latest log date
+  lastEventBy: associated userName 
+  nameFull: 
+    # If person:
+      personFull: lastName + maidenName + suffix, title + firstName + middleName
+    # If company:
+      companyFull: companyName + department
+    # If company & person:          
+      companyFull + personFull
+    placeFull: # primary address (place):
+    commMethods:
+      phonesFull
+      emailsFull
+      netsFull
+    vCard:
+      nameFull
+      placeFull
+      commMethods
+  ###
+
+  schemas.push {name:schemaName, schema}
+
+
+#console.log schemas
+#console.log schemas[0].schema.paths.type
+exports.schemas = schemas
+
+
+
+
+
+  "finishedActivities" : [],
+  "currentActivities" : [{
+      "todoId" : "501ec05ad780780315000008",
+      "todos" : [{
+          "text" : "List at least 5 products in your pantry and their country of origin",
+          "done" : true
+        }]
+    }],
+  "favorites" : [{
+      "title" : "Sow What",
+      "_id" : "501de4a65d1f27ac0c000002",
+      "timestamp" : 1344135814682.0
+    }, {
+
+      "orgs" : [{
+          "org" : "29A40392-D219-4243-8ABD-A840386CC773",
+          "title" : "",
+          "rank" : "New User",
+          "points" : "110",
+          "_id" : ObjectId("4f7b00517b2b9d3951000008"),
+          "labels" : ["D8A933E0-92A3-4A03-B05E-BC66923CAC68:02CBB4FB-6035-4779-805C-71F1FD41B4D6", "AD8CD3A9-ABA8-4598-B7F2-115FDDC9EAC7"]
+        }]
+      
