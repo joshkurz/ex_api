@@ -33,3 +33,4 @@ userSchema.methods.validatePassword = (passwordString) ->
 
 mongoose.model "User", userSchema
 module.exports = mongoose.model("User")
+exports.User = mongoose.model("User")

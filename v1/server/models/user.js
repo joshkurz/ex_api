@@ -49,4 +49,6 @@
 
   module.exports = mongoose.model("User");
 
+  exports.User = mongoose.model("User");
+
 }).call(this);

@@ -1,0 +1,10 @@
+Collections
+  Ignore
+    actions
+    scopes
+    regions
+  Focus
+    users
+    messages
+    labels
+    orgs
