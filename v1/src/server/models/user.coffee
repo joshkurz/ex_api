@@ -3,7 +3,8 @@ crypto = require("crypto")
 uuid = require("node-uuid")
 Schema = mongoose.Schema
 ObjectId = Schema.ObjectId
-userSchema = new Schema(
+
+schema = new Schema(
   name:
     type: String
     required: true
@@ -25,12 +26,12 @@ userSchema = new Schema(
 hash = (passwd, salt) ->
   crypto.createHmac("sha256", salt).update(passwd).digest "hex"
 
-userSchema.methods.setPassword = (passwordString) ->
+schema.methods.setPassword = (passwordString) ->
   @passwdHash = hash(passwordString, @salt)
 
-userSchema.methods.validatePassword = (passwordString) ->
+schema.methods.validatePassword = (passwordString) ->
   @passwdHash is hash(passwordString, @salt)
 
-mongoose.model "User", userSchema
+mongoose.model "User", schema
 module.exports = mongoose.model("User")
 exports.User = mongoose.model("User")

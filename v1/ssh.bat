@@ -1,0 +1,1 @@
+securecrt.exe /s _ub/mongo /s _ub/wc /s _ub/rs  /s _ub/test /s _ub/ssh

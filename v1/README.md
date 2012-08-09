@@ -10,6 +10,7 @@
 
 ## Setup
 - `sudo apt-get install nodejs npm`
+- `sudo npm install -g codo`  # documentation generator
 - `sudo npm install -g express@3.0`
 - `npm install jade`
 - `npm install express@3.0`

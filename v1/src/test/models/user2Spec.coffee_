@@ -1,10 +1,16 @@
-User = require("../../server/models/user")
+User = require("../../server/models/user2").User
 should = require("should")
+
+UserObj = new User()
+UserModel = UserObj.model
 
 describe "given a user", ->
   user = null
   beforeEach ->
-    user = new User()
+    user = new UserModel()
+    
+  it "should have a default name value", ->
+    should.exist user.name
 
   it "should have a default salt value", ->
     should.exist user.salt
@@ -12,7 +18,7 @@ describe "given a user", ->
   describe "when you create another user", ->
     user2 = null
     beforeEach ->
-      user2 = new User()
+      user2 = new UserModel()
 
     it "should not have the same salt value as the previous user", ->
       user.salt.should.not.equal user2.salt
@@ -32,5 +38,4 @@ describe "given a user", ->
     describe "when you validate the password with an invalid value", ->
       it "should return false", ->
         user.validatePassword("something_else").should.be.false
-
 

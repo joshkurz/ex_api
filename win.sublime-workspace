@@ -1,0 +1,1013 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"Ob",
+				"ObjectId"
+			],
+			[
+				"bac",
+				"background-color"
+			],
+			[
+				"GM",
+				"GMarker"
+			],
+			[
+				"mo",
+				"module"
+			],
+			[
+				"home",
+				"homeView"
+			],
+			[
+				"ba",
+				"background-color"
+			],
+			[
+				"pre",
+				"preferences"
+			],
+			[
+				"mar",
+				"margin-top"
+			],
+			[
+				"h",
+				"height"
+			],
+			[
+				"previo",
+				"previousnumber"
+			],
+			[
+				"bou",
+				"boundaries"
+			],
+			[
+				"lat",
+				"latlngs"
+			],
+			[
+				"Boundarie",
+				"BoundariesView"
+			],
+			[
+				"cur",
+				"cursor_live"
+			],
+			[
+				"Home",
+				"HomeControl"
+			],
+			[
+				"z",
+				"z-index"
+			],
+			[
+				"curr",
+				"currentPlace"
+			],
+			[
+				"objec",
+				"objects"
+			],
+			[
+				"col",
+				"Collection"
+			],
+			[
+				"clo",
+				"closestPlace"
+			],
+			[
+				"InfoWindow",
+				"editInfoWindow"
+			],
+			[
+				"js",
+				"jsapp"
+			],
+			[
+				"get",
+				"get_point"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "v1/src/test/builders/user_builder.coffee",
+			"settings":
+			{
+				"buffer_size": 490,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "v1/src/test/db/userSpec.coffee",
+			"settings":
+			{
+				"buffer_size": 3090,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"contents": "var Customer = require('../../lib/entities').Customer;\n\nvar CustomerBuilder = function() {\n  this.name = 'some customer';\n  this.vatNumber = '0456.876.234';\n  this.address = {\n    street: \"some street\",\n    postalCode: \"1234\",\n    city: \"some city\"\n  };\n};\n\nvar prototype = CustomerBuilder.prototype;\n\nprototype.withName = function(name) {\n  this.name = name;\n  return this;\n};\n\nprototype.withVatNumber = function(vatNumber) {\n  this.vatNumber = name;\n  return this;\n};\n\nprototype.withAddress = function(address) {\n  this.address = address;\n  return this;\n};\n\nprototype.withPhoneNumber = function(phoneNumber) {\n  this.phoneNumber = phoneNumber;\n  return this;\n};\n\nprototype.withContact = function(contact) {\n  this.contact = contact;\n  return this;\n};\n\nprototype.withIncludeContactOnInvoice = function() {\n  this.includeContactOnInvoice = true;\n  return this;\n};\n\nprototype.build = function() {\n  var customer = new Customer({\n    name: this.name,\n    vatNumber: this.vatNumber,\n    address: this.address\n  });\n  if (this.phoneNumber !== undefined) { customer.phoneNumber = this.phoneNumber; }\n  if (this.contact !== undefined) { customer.contact = this.contact; }\n  if (this.includeContactOnInvoice !== undefined) { customer.includeContactOnInvoice = this.includeContactOnInvoice; }\n  return customer;\n};\n\nmodule.exports = CustomerBuilder;",
+			"file": "v1/test/builders/customer_builder.js",
+			"file_size": -1,
+			"file_write_time": -1,
+			"settings":
+			{
+				"buffer_size": 1341,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "v1/src/test/builders/customer_builder.coffee__",
+			"settings":
+			{
+				"buffer_size": 1284,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "v1/src/test/db/customerSpec.coffee",
+			"settings":
+			{
+				"buffer_size": 3475,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/C/Users/Larry/__prjs/_ex/_prjs/therabbithole/test/builders/customer_builder.js",
+			"settings":
+			{
+				"buffer_size": 1307,
+				"line_ending": "Windows"
+			}
+		}
+	],
+	"build_system": "Packages/CoffeeScript/Commands/CoffeeScript.sublime-build",
+	"command_palette":
+	{
+		"height": 127.0,
+		"selected_items":
+		[
+			[
+				"instal",
+				"Package Control: Install Package"
+			],
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
+			[
+				"in",
+				"Package Control: Install Package"
+			],
+			[
+				"ins",
+				"Package Control: Install Package"
+			],
+			[
+				"pl",
+				"Package Control: List Packages"
+			],
+			[
+				"Package Control: in",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control: in	",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control: ",
+				"Package Control: List Packages"
+			],
+			[
+				"Package Control: insta	",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control: i",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control: re",
+				"Package Control: Remove Package"
+			],
+			[
+				":w",
+				":w - Save"
+			],
+			[
+				":W",
+				":w - Save"
+			],
+			[
+				"pack",
+				"Package Control: Install Package"
+			],
+			[
+				"pack	",
+				"Package Control: Install Package"
+			],
+			[
+				"java",
+				"Format: Javascript"
+			],
+			[
+				"Snippet: bd",
+				"Snippet: <bdo>"
+			],
+			[
+				"pac",
+				"Package Control: Install Package"
+			],
+			[
+				"packa",
+				"Package Control: Install Package"
+			],
+			[
+				"",
+				"HTML: Encode Special Characters"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"prev",
+				"Markdown Preview: current file in browser"
+			],
+			[
+				"mark",
+				"Markdown Preview: current file in browser"
+			],
+			[
+				"previ",
+				"Markdown Preview: current file in Sublime Text"
+			],
+			[
+				"fetch",
+				"Fetch: Manage remote files"
+			],
+			[
+				"fet",
+				"Fetch: Manage remote files"
+			],
+			[
+				"package",
+				"Package Control: Add Repository"
+			],
+			[
+				"mar",
+				"Set Syntax: Markdown"
+			]
+		],
+		"width": 528.0
+	},
+	"console":
+	{
+		"height": 107.0
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/Z/_ex/_prjs/api/v1/test/builders/customer_builder.js",
+		"/Z/_ex/_prjs/api/v1/src/test/builders/customer_builder.coffee",
+		"/Z/_ex/_prjs/api/v1/src/server/models/user.coffee",
+		"/Z/_ex/_prjs/api/v1/src/server/models/customer.coffee",
+		"/Z/_ex/_prjs/api/v1/test/db/customerSpec.js",
+		"/Z/_ex/_prjs/api/v1/src/test/models/userSpec.coffee",
+		"/C/Users/Larry/My Dropbox/_dev/docs/mongo/mongo.txt",
+		"/C/Users/Larry/My Dropbox/_dev/docs/mongo/Hadoop.txt",
+		"/C/Users/Larry/My Dropbox/_dev/docs/testing/Yeoman.txt",
+		"/C/Users/Larry/My Dropbox/_dev/docs/testing/mocha.txt",
+		"/C/Users/Larry/AppData/Local/Temp/wz22dd/demo/src/task.coffee",
+		"/C/Users/Larry/AppData/Local/Temp/wz408a/demo/test/taskTest.coffee",
+		"/C/Users/Larry/AppData/Roaming/Sublime Text 2/Packages/User/Default (Windows).sublime-keymap",
+		"/C/Ruby/bin/gem",
+		"/C/Ruby/bin/guard",
+		"/C/Users/Larry/.Guardfile",
+		"/C/Ruby/bin/gem.bat",
+		"/C/Users/Larry/My Dropbox/_dev/docs/coffee/cake.txt",
+		"/C/Users/Larry/AppData/Roaming/Sublime Text 2/Packages/Default/Default (Windows).sublime-keymap",
+		"/C/Users/Larry/My Dropbox/_dev/docs/testing/should.txt",
+		"/C/Users/Larry/My Dropbox/_dev/docs/jasmine/InstantJasmineCoffee/Cakefile",
+		"/C/Users/Larry/.ssh/id_rsa.pub",
+		"/C/Users/Larry/My Dropbox/_dev/docs/testing/docco.txt",
+		"/C/Users/Larry/My Dropbox/_dev/docs/node/no.de.txt",
+		"/C/Users/Larry/My Dropbox/_dev/docs/testing/jasmine.txt",
+		"/C/Users/Larry/My Dropbox/_dev/docs/coffee/coffee.txt",
+		"/C/Users/Larry/My Dropbox/_dev/docs/jasmine/jasmine.coffee",
+		"/C/Users/Larry/My Dropbox/_dev/docs/node/node.coffee",
+		"/C/Users/Larry/My Dropbox/_dev/docs/jashkenas-coffee-script-79492aa/README",
+		"/C/Users/Larry/My Dropbox/_dev/docs/jashkenas-coffee-script-79492aa/src/helpers.coffee",
+		"/C/Users/Larry/__prjs/_of/of_api/v1/models/models.js",
+		"/C/Users/Larry/_ub/a2/node_modules/mongodb/install.js",
+		"/C/Users/Larry/__prjs/_of/of_api/v1/_TODOs.md",
+		"/C/Users/Larry/__prjs/_of/of_api/v1/docs/docs/usecases.out",
+		"/C/Users/Larry/__prjs/_of/of_api/v1/assets/coffee/controllers/passport.coffee",
+		"/C/Users/Larry/__prjs/_of/of_api/v1/assets/coffee/urls.coffee",
+		"/C/Users/Larry/__prjs/_of/of_api/v1/assets/coffee/models/lastmod.coffee",
+		"/C/Users/Larry/__prjs/_of/of_api/v1/assets/coffee/models/contactSchema.coffee",
+		"/C/Users/Larry/__prjs/_of/of_api/v1/assets/coffee/models/dtSchema.coffee",
+		"/C/Users/Larry/__prjs/_of/of_api/v1/assets/coffee/models/contact.coffee",
+		"/C/Users/Larry/__prjs/_of/of_api/v1/assets/coffee/controllers/contacts.coffee",
+		"/C/Users/Larry/AppData/Roaming/Sublime Text 2/Packages/User/Preferences.sublime-settings",
+		"/C/Users/Larry/__prjs/_of/of_api/v1/scripts/addContacts.py",
+		"/C/Users/Larry/__prjs/_of/of_api/v1/assets/coffee/models/miscSchemas.coffee",
+		"/C/Users/Larry/AppData/Roaming/Sublime Text 2/Packages/User/Sublime Key Map.sublime-settings",
+		"/C/Users/Larry/__prjs/_of/of_api/v1/models/lastmod.js",
+		"/C/Users/Larry/__prjs/_of/of_api/v1/assets/coffee/controllers/users.coffee",
+		"/C/Users/Larry/__prjs/_of/of_api/v1/assets/coffee/models/userSchema.coffee",
+		"/C/Users/Larry/__prjs/_of/of_api/v1/assets/coffee/controllers/controllers.coffee",
+		"/C/Users/Larry/__prjs/_of/of_api/v1/assets/coffee/models/user.coffee",
+		"/C/Users/Larry/__prjs/_of/of_api/v1/assets/coffee/app.coffee",
+		"/C/Users/Larry/__prjs/_of/of_api/v1/assets/coffee/models/models.coffee",
+		"/C/Users/Larry/__prjs/_of/of_api/v1/assets/coffee/models/dateSchema.coffee",
+		"/C/Users/Larry/__prjs/_of/of_api/v1/views/index.jade",
+		"/C/Users/Larry/__prjs/_of/of_api/v1/views/users.jade",
+		"/C/Users/Larry/__prjs/_of/of_api/v1/views/login.jade",
+		"/C/Users/Larry/__prjs/_of/of_api/v1/views/layout.jade",
+		"/C/Users/Larry/__prjs/_of/of_api/v1/views/contacts.jade",
+		"/C/Users/Larry/__prjs/_of/of_api/v1/views/restricted.jade",
+		"/C/Users/Larry/__prjs/_of/of_api/.git/config",
+		"/C/Users/Larry/__prjs/_of/api/.gitignore",
+		"/C/Users/Larry/__prjs/_of/api/v2/assets/coffee/app.coffee",
+		"/C/Users/Larry/__prjs/_of/api/v2/assets/coffee/models/user.coffee",
+		"/C/Users/Larry/__prjs/_of/api/v2/assets/coffee/controllers/contacts.coffee",
+		"/C/Users/Larry/__prjs/_of/api/v2/assets/coffee/models/contact.coffee",
+		"/C/Users/Larry/__prjs/_of/api/v2/assets/coffee/models/contactSchema.coffee",
+		"/C/Users/Larry/__prjs/_of/api/v2/assets/coffee/urls.coffee",
+		"/C/Users/Larry/__prjs/_of/api/v2/assets/coffee/controllers/passport.coffee",
+		"/C/Users/Larry/__prjs/_of/api/v2/assets/coffee/controllers/users.coffee",
+		"/C/Users/Larry/_ub/a2/assets/coffee/app.coffee",
+		"/C/Users/Larry/__prjs/_of/api/v2/assets/coffee/models/userSchema.coffee",
+		"/C/Users/Larry/__prjs/_of/a1/assets/coffee/app.coffee",
+		"/C/Users/Larry/__prjs/_of/a2/assets/coffee/mvc.coffee",
+		"/C/Users/Larry/__prjs/_of/api/v2/package.json",
+		"/C/Users/Larry/__prjs/_of/api/v2/views/users.jade",
+		"/C/Users/Larry/__prjs/_of/api/v2/assets/coffee/models/user_.coffee",
+		"/C/Users/Larry/__prjs/_of/api/v1/package.json",
+		"/C/Users/Larry/__prjs/_of/api/v1/views/index.jade",
+		"/C/Users/Larry/__prjs/_of/api/v1/assets/coffee/urls.coffee",
+		"/C/Users/Larry/__prjs/_of/api/v1/assets/coffee/app.coffee",
+		"/C/Users/Larry/__prjs/_of/api/v1/views/layout.jade",
+		"/C/Users/Larry/__prjs/_of/api/v1/views/contacts.jade",
+		"/C/Users/Larry/__prjs/_of/api/v1/assets/coffee/controllers/contacts.coffee",
+		"/C/Users/Larry/__prjs/_of/api/v1/assets/coffee/controllers/controllers.coffee",
+		"/C/Users/Larry/__prjs/_of/api/v1/assets/coffee/models/user.coffee",
+		"/C/Users/Larry/__prjs/_of/a2/assets/coffee/app/models/user.coffee",
+		"/C/Users/Larry/__prjs/_of/ofd/assets/coffee/models/models.coffee",
+		"/C/Users/Larry/__prjs/_of/api/v1/assets/coffee/models/models.coffee",
+		"/C/Users/Larry/__prjs/_of/api/v1/scripts/addObjs.py",
+		"/C/Users/Larry/__prjs/_of/api/v1/assets/coffee/models/lastmod.coffee",
+		"/C/Users/Larry/__prjs/_of/api/v1/assets/coffee/controllers/contact.coffee",
+		"/C/Users/Larry/__prjs/_of/api/v1/assets/coffee/models/plugins.coffee",
+		"/C/Users/Larry/__prjs/_of/api/v1/views/index_.jade",
+		"/C/Users/Larry/__prjs/_of/api/v1/views/index.coffee",
+		"/C/Users/Larry/__prjs/_of/api/v1/views/layout.coffee",
+		"/C/Users/Larry/__prjs/_of/api/v1/rs.bat",
+		"/C/Users/Larry/__prjs/_of/api/v1/wc.bat",
+		"/C/Users/Larry/__prjs/_of/api/v1/ponyo.coffee",
+		"/U/home/larry/api/v1/Procfile",
+		"/U/home/larry/api/v1/README.md",
+		"/U/home/larry/test/ponyo/controllers/controllers.coffee",
+		"/U/home/larry/test/ponyo/client/config.coffee",
+		"/U/home/larry/test/ponyo/client/app/main.coffee",
+		"/U/home/larry/test/ponyo/ponyo.coffee",
+		"/C/Users/Larry/__prjs/_of/api/package.json",
+		"/C/Users/Larry/__prjs/_of/ofd/see.txt",
+		"/C/Users/Larry/__prjs/_of/ofd/db_places_old.py",
+		"/C/Users/Larry/__prjs/ourfield/static/coffee/app.coffee",
+		"/C/Users/Larry/__prjs/ourfield/static/coffee/views/app.coffee",
+		"/C/Users/Larry/__prjs/ourfield/static/coffee/views/map.coffee",
+		"/C/Users/Larry/__prjs/ourfield/static/coffee/views/boundary.coffee",
+		"/C/Users/Larry/__prjs/ourfield/static/coffee/views/place.coffee",
+		"/C/Users/Larry/__prjs/ourfield/static/coffee/collections/boundaries.coffee",
+		"/C/Users/Larry/__prjs/ourfield/templates/map/base.html",
+		"/C/Users/Larry/Downloads/order-12866890.license",
+		"/C/Users/Larry/__prjs/nb/nbn/_lib/xchg_reload_hospitals.php",
+		"/C/Users/Larry/__prjs/_of/ofd/mongo.coffee",
+		"/C/Users/Larry/__prjs/_of/ofd/m.py",
+		"/C/Users/Larry/__prjs/nb/nbn/_lib/xchg_reload_map_points.php",
+		"/C/Users/Larry/__prjs/nb/nbn/_lib/xchg_reload_ads.php",
+		"/C/Users/Larry/__prjs/_of/ofd/db_boundaries_types_old.py",
+		"/C/Users/Larry/__prjs/_of/ofd/places_old.py",
+		"/U/home/larry/angular-express-blog/assets/coffee/app.coffee",
+		"/U/home/larry/pcat/server.js",
+		"/U/home/larry/pcat/load.js",
+		"/C/Users/Larry/__prjs/_of/ofd/x.cs",
+		"/U/home/larry/node-mysql-libmysqlclient/doc/examples.js",
+		"/C/Users/Larry/__prjs/_of/ofd/clone.coffee"
+	],
+	"find":
+	{
+		"height": 34.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+			"C:\\Users\\Larry\\__prjs\\a2",
+			"C:\\Users\\Larry\\__prjs\\gitprjs\\angular-google-maps",
+			"C:\\Users\\Larry\\__prjs\\a",
+			"C:\\Users\\Larry\\__prjs\\gitprjs\\angular-google-maps",
+			"C:\\Users\\Larry\\__prjs\\_ajs\\angular-phonecat",
+			"C:\\Users\\Larry\\__prjs\\node\\node-login",
+			"C:\\Users\\Larry\\__prjs\\node\\node-login\\app\\server",
+			"C:\\Users\\Larry\\__prjs\\node\\node-login",
+			"C:\\Users\\Larry\\__prjs\\ourfield\\static",
+			"C:\\Users\\Larry\\__prjs\\ourfield",
+			"C:\\Users\\Larry\\__prjs\\ofm",
+			"C:\\Users\\Larry\\__prjs\\ourfield",
+			"C:\\Users\\Larry\\__prjs\\node\\express-backbone-coffee-template",
+			"C:\\Users\\Larry\\__prjs\\ofm",
+			"C:\\Users\\Larry\\__prjs\\ofm\\node_modules",
+			"C:\\Users\\Larry\\__prjs\\node\\backbone-cellar\\tutorial\\final",
+			"C:\\Users\\Larry\\__prjs\\nodeblox",
+			"C:\\Users\\Larry\\__prjs\\ubuntu\\dev\\tw",
+			"C:\\Users\\Larry\\__prjs\\ubuntu\\dev\\basic",
+			"C:\\Users\\Larry\\__prjs\\ubuntu\\dev\\tw",
+			"C:\\Users\\Larry\\__prjs\\ubuntu\\dev\\ofb",
+			"C:\\Users\\Larry\\__prjs\\ourfield",
+			"C:\\Users\\Larry\\__prjs\\nb\\nbn\\answers",
+			"C:\\Users\\Larry\\__prjs\\nb\\nbn\\answers,*.js",
+			"C:\\Users\\Larry\\__prjs\\nb\\nbn,*.php",
+			"C:\\Users\\Larry\\__prjs\\nb\\nbn",
+			"C:\\Users\\Larry\\__prjs\\nb\\nbn\\answers\\qa-include",
+			"C:\\Users\\Larry\\__prjs\\nb\\nbn\\answers",
+			"C:\\Users\\Larry\\__prjs\\nb\\nbn\\_lib",
+			"C:\\Users\\Larry\\__prjs\\nb\\nbn\\answers",
+			"C:\\Users\\Larry\\__prjs\\nb\\nbn\\qa",
+			"C:\\Users\\Larry\\__prjs\\ourfield\\static\\coffee",
+			"C:\\_prm",
+			"C:\\Users\\Larry\\__prjs\\ourfield\\static\\coffee",
+			"C:\\Users\\Larry\\__prjs\\ourfield\\ve\\Lib\\site-packages\\pinax\\projects\\basic_project",
+			"C:\\Users\\Larry\\__prjs\\ourfield",
+			"C:\\Users\\Larry\\__prjs\\ourfield_2\\templates",
+			"C:\\Users\\Larry\\__prjs\\ourfield\\templates",
+			"C:\\Users\\Larry\\__prjs\\ourfield_2",
+			"C:\\Users\\Larry\\__prjs\\ourfield\\ve\\Lib\\site-packages\\pinax_theme_bootstrap",
+			"C:\\Users\\Larry\\__prjs\\ourfield",
+			"C:\\Users\\Larry\\__prjs\\ourfield_2",
+			"C:\\Users\\Larry\\__prjs\\ourfield",
+			"C:\\Users\\Larry\\__prjs\\ourfield\\scripts",
+			"C:\\Users\\Larry\\__prjs\\z_others\\memento",
+			"C:\\Users\\Larry\\__prjs\\ourfield\\apps",
+			"C:\\Users\\Larry\\AppData\\Roaming\\Sublime Text 2\\Packages\\Terminal",
+			"C:\\Users\\Larry\\AppData\\Roaming\\Sublime Text 2\\Packages\\SideBarEnhancements",
+			""
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": true,
+		"find_history":
+		[
+			"this",
+			"ctrl+shift",
+			"watch",
+			"white",
+			"number",
+			"\\n",
+			",",
+			"\\n",
+			"#######",
+			"○ ",
+			":\n",
+			"next_bookmark",
+			"[\"f2\"]",
+			" : ",
+			"_id",
+			"STR",
+			" - ",
+			"TAGS",
+			"□ ",
+			"_short",
+			"Dt",
+			"String -",
+			" : String",
+			"STR",
+			"BOOL",
+			"bool",
+			"\\n",
+			"◊ ",
+			"® ",
+			"□ ",
+			".plugin lastMod, {user_id: \"LarryID\", loc: [1,2]}",
+			"Contact",
+			"Place",
+			"Dt",
+			"UserModel",
+			"contact",
+			"Contact",
+			"Contacts",
+			"\\n",
+			";",
+			"\\n",
+			";",
+			"url",
+			"uri",
+			"redirec",
+			"Obj",
+			"2722 999 lwe",
+			"mario",
+			"1-2-1",
+			"samira",
+			"??",
+			": ",
+			",\\s*",
+			"Mario LaChance",
+			"ml",
+			", ",
+			"  * ",
+			"'t\"",
+			"'ve\"",
+			"'d\"",
+			"'re\"",
+			"'ll\"",
+			"'s\"",
+			"'.*?\"",
+			"','",
+			"\\s+",
+			"mysql_",
+			"connection",
+			"ObjectId",
+			"ensureAuthenticated",
+			"current",
+			"mongoStore",
+			"connect",
+			"&quot;",
+			"routes",
+			"User",
+			"product",
+			"ProductModel",
+			"products",
+			"view",
+			"views",
+			"user",
+			"app",
+			"connect",
+			"//",
+			"mongoStore",
+			"connect-mongodb",
+			"compress",
+			"ofm",
+			"\\",
+			"tabs",
+			"currCenter",
+			"oncenter",
+			"ofm",
+			"myApp",
+			"    ",
+			"\\s*\\\\n",
+			"^p\\n",
+			"mobileimgs",
+			"watchID",
+			"track",
+			"cross",
+			"Bootstrap Sample App",
+			"twitter",
+			"ourfield",
+			"api",
+			"center",
+			"// ",
+			"myApp",
+			"phonecat",
+			"    ",
+			"'/",
+			"footer1-title",
+			"hash",
+			"genSalt",
+			"countries",
+			"CT",
+			"console",
+			"country-list",
+			"countries",
+			"EM",
+			"bcrypt",
+			"buffertools",
+			"\"></script>",
+			"<script src=\"../assets/js",
+			"contentMainEl",
+			"mapDivEl",
+			"options"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"@",
+			"",
+			"',\\n'",
+			"','",
+			"#",
+			"",
+			": ",
+			"ObjectId",
+			"String",
+			" # ",
+			"[String]",
+			"",
+			"Short",
+			"Event",
+			"String #",
+			": String",
+			"String",
+			"Boolean",
+			"",
+			".plugin lastMod",
+			"Language",
+			"Contact",
+			"PlaceAssociation",
+			"User",
+			"user",
+			"User",
+			"Users",
+			";",
+			"\\n",
+			";",
+			"\\n",
+			"Contact",
+			":",
+			",",
+			"ml",
+			",\\n",
+			"\\n",
+			"^p",
+			"",
+			"\"",
+			"\",\"",
+			"','",
+			"mongo_",
+			"mysqldb",
+			"handleAuthentification",
+			"\"",
+			"UserModel",
+			"user",
+			"User",
+			"users",
+			"#",
+			"\")\n",
+			"myApp",
+			"/",
+			"center",
+			"myApp",
+			"  ",
+			"",
+			"  ",
+			"'",
+			"')",
+			"script(src='lib",
+			"containerEl",
+			"mapEl",
+			"topNavBarView",
+			"map_canvas",
+			"js/lib/",
+			"fs.existsSync",
+			"NavBar",
+			"js\")",
+			"\"",
+			"script(src=\"",
+			"",
+			"req.locals",
+			"  ",
+			"",
+			"/bootstrap/js",
+			"/bootstrap/less",
+			"m.ourfield.org",
+			"')",
+			"script(src='",
+			",",
+			"drop-transparent.png",
+			"%host%",
+			"http://www.noblood.org/newsletters/2012/06jun01",
+			"http://www.noblood.org/newsletters/styles/01",
+			"http://www.noblood.org/newsletters",
+			"noblood",
+			"",
+			"www.noblood",
+			"",
+			"/",
+			"",
+			"tags_sidebar",
+			":",
+			"transfusion-alternatives-patient-blood-management-resources-map",
+			";",
+			"\\'",
+			"answers/",
+			"nobloodtest",
+			"?/?$ /content/",
+			" ",
+			"password=zaq12wsx",
+			"unoblood",
+			"noblood.dreamhosters.com",
+			"nobloodo",
+			"nobloodtest",
+			"",
+			"/static/css/",
+			"cancelWatch",
+			"window.map",
+			"",
+			"placeTypes",
+			"@placeTypes",
+			"placeTypes",
+			"boundary",
+			"boundaries",
+			"boundary",
+			"Boundaries",
+			"Boundary",
+			"boundary",
+			"Boundary",
+			"",
+			"#",
+			"",
+			"calcDistanceSquare",
+			"currentMaxTerritoryMarkerno",
+			"markerno"
+		],
+		"reverse": false,
+		"show_context": false,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": false
+	},
+	"groups":
+	[
+		{
+			"selected": 2,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "v1/src/test/builders/user_builder.coffee",
+					"settings":
+					{
+						"buffer_size": 490,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								490,
+								490
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/CoffeeScript/Syntaxes/CoffeeScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 252.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "v1/src/test/db/userSpec.coffee",
+					"settings":
+					{
+						"buffer_size": 3090,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								392,
+								392
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/CoffeeScript/Syntaxes/CoffeeScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "v1/test/builders/customer_builder.js",
+					"settings":
+					{
+						"buffer_size": 1341,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1341,
+								1341
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 319.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
+			]
+		},
+		{
+			"selected": 2,
+			"sheets":
+			[
+				{
+					"buffer": 3,
+					"file": "v1/src/test/builders/customer_builder.coffee__",
+					"settings":
+					{
+						"buffer_size": 1284,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1056,
+								1056
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/CoffeeScript/Syntaxes/CoffeeScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "v1/src/test/db/customerSpec.coffee",
+					"settings":
+					{
+						"buffer_size": 3475,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								550,
+								550
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/CoffeeScript/Syntaxes/CoffeeScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 108.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "/C/Users/Larry/__prjs/_ex/_prjs/therabbithole/test/builders/customer_builder.js",
+					"settings":
+					{
+						"buffer_size": 1307,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								1307
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 34.0
+	},
+	"input":
+	{
+		"height": 37.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			],
+			[
+				1,
+				0,
+				2,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			0.5,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"replace":
+	{
+		"height": 62.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+			[
+				"ins",
+				"a2/node_modules/mongodb/install.js"
+			],
+			[
+				"las",
+				"of_api/v1/models/lastmod.js"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"selected_items":
+		[
+			[
+				"",
+				"/C/Users/Larry/__prjs/ourfield/templates/map/ourfield.sublime-project"
+			]
+		],
+		"width": 380.0
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 234.0,
+	"status_bar_visible": true
+}

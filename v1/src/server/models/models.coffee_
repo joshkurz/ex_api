@@ -369,8 +369,9 @@ if 1 # User
   schemaName = 'User'
   schema = User = new Schema
 
+  org_id: ObjectId # foreign key to org
   code: String # assigned as applicable
-  industryId: String # retail, manufacturing, education, government
+  credentials: String 
   statusTags: [String]
 
   notes: [Note] # Note Object
@@ -383,8 +384,6 @@ if 1 # User
   gender: String
   tags: [String]
   languages: [UserLang]
-
-  org_id: ObjectId # foreign key to org
   firstName: # current fieldname
     type: String
     required: true

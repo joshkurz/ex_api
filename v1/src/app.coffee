@@ -1,4 +1,5 @@
 path       = require("path")
+config     = require("./config")
 express    = require("express")
 routes     = require("./server/routes")
 http       = require("http")
@@ -17,10 +18,11 @@ app.configure ->
   app.use express.methodOverride()
   app.use app.router
   app.use express["static"](path.join(__dirname, "public"))
+  app.use express["static"](path.join(__dirname, "docs"))
 
 app.configure "development", ->
   app.set "port", process.env.PORT or 3000
-  app.set "db-uri", "mongodb://localhost/ex1-dev"
+  app.set "db-uri", process.env.MONGOLAB_URI or process.env.MONGODB_URI or config.default_db_uri
   app.use express.errorHandler(
     dumpExceptions: true
     showStack: true
@@ -32,7 +34,7 @@ app.configure "development", ->
 
 app.configure "test", ->
   app.set "port", process.env.PORT or 3001
-  app.set "db-uri", "mongodb://localhost/ex1-test"
+  app.set "db-uri", process.env.MONGOLAB_URI or process.env.MONGODB_URI or config.default_db_uri
   app.set "view options",
     layout: false
     pretty: true
@@ -40,13 +42,22 @@ app.configure "test", ->
 
 app.configure "production", ->
   app.set "port", process.env.PORT or 80
-  app.set "db-uri", "mongodb://localhost/of-production"
+  app.set "db-uri", process.env.MONGOLAB_URI or process.env.MONGODB_URI or config.default_db_uri
   app.set "view options",
     layout: false
 
   app.use express.errorHandler()
 
+mongoose.connect app.get("db-uri")
+
+exports = module.exports = mongoose
+
+# app.get "doc", routes.doc
+app.get "/doc", (req, res) ->
+  res.render "doc/index",
+
 app.get "/", routes.index
+
 http.createServer(app).listen app.get("port"), ->
   console.log "Express server listening on port " + app.get("port")
 

@@ -1,0 +1,41 @@
+mongoose = require("mongoose")
+crypto = require("crypto")
+uuid = require("node-uuid")
+Schema = mongoose.Schema
+
+# User class
+#
+class User
+  constructor: ->
+    # schema
+    @schema = new Schema(
+      # name
+      name:
+        type: String
+        default: 'Larry'
+
+      email:
+        type: String
+
+      salt:
+        type: String
+        required: true
+        default: uuid.v1
+
+      passwdHash:
+        type: String
+        required: true
+    )
+
+    hash = (passwd, salt) ->
+      crypto.createHmac("sha256", salt).update(passwd).digest "hex"
+
+    @schema.methods.setPassword = (passwordString) ->
+      @passwdHash = hash(passwordString, @salt)
+
+    @schema.methods.validatePassword = (passwordString) ->
+      @passwdHash is hash(passwordString, @salt)
+
+    @model = mongoose.model("User", @schema)
+
+exports.User = User

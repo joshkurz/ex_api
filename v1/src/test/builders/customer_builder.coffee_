@@ -1,0 +1,47 @@
+Customer = require("../../server/models/customer")
+
+CustomerBuilder = ->
+  @name = "some customer"
+  @vatNumber = "0456.876.234"
+  @address =
+    street: "some street"
+    postalCode: "1234"
+    city: "some city"
+
+prototype = CustomerBuilder::
+prototype.withName = (name) ->
+  @name = name
+  this
+
+prototype.withVatNumber = (vatNumber) ->
+  @vatNumber = name
+  this
+
+prototype.withAddress = (address) ->
+  @address = address
+  this
+
+prototype.withPhoneNumber = (phoneNumber) ->
+  @phoneNumber = phoneNumber
+  this
+
+prototype.withContact = (contact) ->
+  @contact = contact
+  this
+
+prototype.withIncludeContactOnInvoice = ->
+  @includeContactOnInvoice = true
+  this
+
+prototype.build = ->
+  customer = new Customer(
+    name: @name
+    vatNumber: @vatNumber
+    address: @address
+  )
+  customer.phoneNumber = @phoneNumber  if @phoneNumber isnt `undefined`
+  customer.contact = @contact  if @contact isnt `undefined`
+  customer.includeContactOnInvoice = @includeContactOnInvoice  if @includeContactOnInvoice isnt `undefined`
+  customer
+
+module.exports = CustomerBuilder
